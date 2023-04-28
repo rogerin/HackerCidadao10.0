@@ -1,0 +1,15 @@
+#video {
+    width: 250px !important;
+    height: 250px !important;
+}
+
+.responsive-canvas {
+  width: 100%;
+}
+
+/* .btn-success {
+  background-color: #173db7;
+} */
+#mymargin {
+  margin-top: -30px;
+}

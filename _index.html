@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        video {
+            width: 400px;
+            height: 400px;
+        }
+        canvas {
+            width: 200px;
+            height: 200px;
+
+            float: left;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <div class="box">
+            <button id='capture'>Iniciar Captura</button>
+            <button >Treinar IA</button>
+        </div>
+        <div class="box">
+            <video id="video"></video>
+        </div>
+        <div class="box">
+            <canvas id='canvas1'></canvas>
+            <canvas id='canvas2'></canvas>
+            <canvas id='canvas3'></canvas>
+            <canvas id='canvas4'></canvas>
+        </div>
+        
+       
+    </div>
+   
+    
+
+
+    
+    <script>
+        
+        let img = 1;
+        let init = false;
+       
+        setInterval( () => {
+            if(init) {
+                document.getElementById('capture').click();
+            }
+        }, 1000 )
+
+        navigator.mediaDevices.getUserMedia({video: true})
+        .then(function (mediaStream) {
+            const video = document.querySelector('#video');
+            video.srcObject = mediaStream;
+            video.play();
+        })
+        .catch(function (err) {
+            console.log('Não há permissões para acessar a webcam')
+        })
+        
+        document.querySelector('#capture').addEventListener('click', function (e) {
+            init = true;
+            if(img == 5) img = 1;
+            var canvas = document.querySelector(`#canvas${img}`);  
+            canvas.height = video.videoHeight;
+            canvas.width = video.videoWidth;
+            var context = canvas.getContext('2d');
+            context.drawImage(video, 0, 0)
+            img++;
+            
+        })
+
+      
+    </script>
+</body>
+</html>
