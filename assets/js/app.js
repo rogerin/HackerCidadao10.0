@@ -10,7 +10,7 @@ $( document ).ready(function() {
         if(init) {
             document.getElementById('capture').click();
         }
-    }, 200 )
+    }, 1300 )
 
     navigator.mediaDevices.getUserMedia({video: true})
     .then(function (mediaStream) {
